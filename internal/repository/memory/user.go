@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"go-leraning/internal/model"
+	"go-learning/internal/model"
 )
 
 type UserRepository struct {
