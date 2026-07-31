@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"go-learning/internal/user"
 	"net/http"
@@ -12,19 +11,10 @@ func main() {
 
 	service := user.NewUserService(repo)
 
-	user, err := service.GetUser(context.Background(), 1)
-
-	if err != nil {
-		// Handle error
-	}
-
-	if user != nil {
-		fmt.Printf("User: %+v\n", user)
-	}
-
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("GET /users/{id}", user.NewHandler(service).ServeHTTP)
 
+	fmt.Println("Server is running on port 8080")
 	http.ListenAndServe(":8080", mux)
 }
