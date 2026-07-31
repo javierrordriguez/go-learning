@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"go-learning/internal/user"
+	"net/http"
 )
 
 func main() {
@@ -20,4 +21,10 @@ func main() {
 	if user != nil {
 		fmt.Printf("User: %+v\n", user)
 	}
+
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("GET /users/{id}", user.NewHandler(service).ServeHTTP)
+
+	http.ListenAndServe(":8080", mux)
 }
