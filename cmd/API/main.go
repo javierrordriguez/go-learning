@@ -1,16 +1,15 @@
-package golearning
+package main
 
 import (
 	"context"
 	"fmt"
-	"go-learning/internal/repository/memory"
-	"go-learning/internal/service"
+	"go-learning/internal/user"
 )
 
 func main() {
-	repo := memory.NewUserRepository()
+	repo := user.NewUserRepository()
 
-	service := service.NewUserService(repo)
+	service := user.NewUserService(repo)
 
 	user, err := service.GetUser(context.Background(), 1)
 
